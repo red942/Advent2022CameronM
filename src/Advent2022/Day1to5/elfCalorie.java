@@ -1,4 +1,4 @@
-package Advent2022.Day1to5;
+package advent2022.day1to5;
 import java.util.Scanner;
 
 /*code finished by Cameron Miller 10:39AM 12/1/2022 (CST), this is day 1, challenge 1*/

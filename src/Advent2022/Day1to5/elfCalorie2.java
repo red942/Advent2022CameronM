@@ -1,4 +1,4 @@
-package Advent2022.Day1to5;
+package advent2022.day1to5;
 import java.util.Scanner;
 import java.util.Arrays;
 
