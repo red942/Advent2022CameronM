@@ -4,7 +4,7 @@ import java.util.Scanner;
 /*code finished by Cameron Miller 10:39AM 12/1/2022 (CST), this is day 1, challenge 1*/
 /*for the input, paste in the values to the terminal and then type a new line saying "done" after a blank line*/
 
-public class elfCalorie {
+public class ElfCalorie1 {
     public static void main(String[] args){
         Scanner stdin = new Scanner(System.in);
         int elfHigh = 0;
