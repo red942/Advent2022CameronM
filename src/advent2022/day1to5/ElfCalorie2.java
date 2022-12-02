@@ -16,7 +16,6 @@ public class ElfCalorie2 {
             if (num.equals("done"))
                 break;
             if (num.equals("")){
-
                 if (elfTemp > elfHighs[0]){
                     elfHighs[0] = elfTemp;
                 }
