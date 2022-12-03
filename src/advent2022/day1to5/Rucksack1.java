@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class rucksack1 {
+public class Rucksack1 {
     public static void main(String[] args){
         Scanner stdin = new Scanner(System.in);
         String line = "";
