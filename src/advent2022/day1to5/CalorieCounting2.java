@@ -5,7 +5,7 @@ import java.util.Arrays;
 /*code finished by Cameron Miller 10:54AM 12/1/2022 (CST), this is day 1, challenge 2*/
 /*for the input, paste in the values to the terminal and then type a new line saying "done" after a blank line */
 
-public class ElfCalorie2 {
+public class CalorieCounting2 {
     public static void main(String[] args){
         Scanner stdin = new Scanner(System.in);
         int[] elfHighs = new int[3];
