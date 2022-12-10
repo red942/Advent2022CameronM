@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 
 public class CathodeRayTube1 {
     public static void main(String[] args) throws FileNotFoundException{
-        Scanner input = new Scanner(new File(System.getProperty("user.dir") + "/lib/day10.txt"));
+        Scanner input = new Scanner(new File(System.getProperty("user.dir") + "/lib/advent2022/day10.txt"));
         int cycle = 0;
         int x = 1;
         int sum = 0;
