@@ -1,8 +1,10 @@
 package advent2022.day11to15;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.math.BigInteger;
 
-public class day11 {
+public class day11b {
+
     public static void main(String[] args){
         data[] monkies = new data[8];
         ArrayList<Long> m0 = new ArrayList<Long>();
@@ -57,17 +59,21 @@ public class day11 {
         m7.add(63L);
         m7.add(80L);
         monkies[7] = new data(m7, '+', 3, 7, 1, 3);
-        int[] cnt = new int[monkies.length];
 
-        for (int index = 0; index < 20; index++){
+        int[] cnt = new int[monkies.length];
+        int factor = 1;
+        for (int i = 0; i < monkies.length; i++)
+            factor *= monkies[i].divisor;
+
+        for (int index = 0; index < 10000; index++){
             for (int i = 0; i < monkies.length; i++){
                 for (int j = 0; j < monkies[i].items.size(); j++){
                     if (monkies[i].operator == '+')
-                        monkies[i].items.set(j, (monkies[i].items.get(j) + monkies[i].operatorNum)/3);
+                        monkies[i].items.set(j, (monkies[i].items.get(j) + monkies[i].operatorNum) % factor);
                     else if (monkies[i].operator == '*')
-                        monkies[i].items.set(j, (monkies[i].items.get(j) * monkies[i].operatorNum)/3);
+                        monkies[i].items.set(j, (monkies[i].items.get(j) * monkies[i].operatorNum) % factor);
                     else 
-                        monkies[i].items.set(j, (monkies[i].items.get(j) * monkies[i].items.get(j))/3);
+                        monkies[i].items.set(j, (monkies[i].items.get(j) * monkies[i].items.get(j)) % factor);
                     
                     if (monkies[i].items.get(j) % monkies[i].divisor == 0)
                         monkies[monkies[i].truth].items.add(monkies[i].items.get(j));
@@ -79,6 +85,8 @@ public class day11 {
             }
         }
         Arrays.sort(cnt);
-        System.out.println(cnt[cnt.length - 2] * cnt[cnt.length - 1]);
+        BigInteger a = new BigInteger(Integer.toString(cnt[cnt.length - 2]));
+        BigInteger b = new BigInteger(Integer.toString(cnt[cnt.length - 1]));
+        System.out.println(a.multiply(b));
     }
 }
