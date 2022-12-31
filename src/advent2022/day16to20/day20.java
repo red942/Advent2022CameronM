@@ -26,31 +26,11 @@ public class day20 {
 
     public static void move(ArrayList<Point> nums, int n){
         int start = find(nums, n);
+        Point temp = nums.get(start);
 
-        int val = nums.get(start).y;
-        int end = start + val;
-        while (end < 0){
-            end += (nums.size()-1);
-            if (end < nums.size()*-1)
-                end++;
-        }
-
-        
-        while (end >= nums.size()){
-            end -= (nums.size()-1);
-            if (end >= nums.size())
-                end--;
-        }
-
-        if (start < end){
-            for (int i = start; i < end; i++){
-                Collections.swap(nums, i, i+1);
-            }
-        } else if (start > end) {
-            for (int i = start; i > end; i--){
-                Collections.swap(nums, i, i-1);
-            }
-        }
+        nums.remove(start);
+        int end = Math.floorMod(start + temp.y, nums.size());
+        nums.add(end, temp);
     }
 
     public static int find(ArrayList<Point> nums, int n){
