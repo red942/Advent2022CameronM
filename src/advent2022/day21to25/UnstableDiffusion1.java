@@ -7,12 +7,12 @@ import java.io.*;
 //FOR THIS TO WORK, YOU NEED TO ADD AN EXTRA '.' TO THE END OF EACH LINE IN YOUR INPUT
 //THEN YOU NEED TO ADD AN EXTRA LINE (OF LENGTH 76) CONTAINING JUST '.'
 
-public class day23b {
+public class UnstableDiffusion1 {
     public static void main(String[] args) throws FileNotFoundException {
         Scanner input = new Scanner(new File(
             System.getProperty("user.dir") + "/lib/advent2022/day23.txt"));
 
-        char[][] temp = new char[76][76]; //76 76 8 8 
+        char[][] temp = new char[76][76];
 
         int cnt = 0;
         while (input.hasNextLine()){
@@ -40,33 +40,91 @@ public class day23b {
             }
         }
 
-        int num = -1;
-        boolean over = false;
-        while (true){
-            num++;
-            switch (num%4){
+        for (int i = 0; i < 10; i++){
+            switch (i%4){
                 case 0:
-                    over = moveN(grove);
+                    moveN(grove);
                     break;
                 case 1:
-                    over = moveS(grove);
+                    moveS(grove);
                     break;
                 case 2:
-                    over = moveW(grove);
+                    moveW(grove);
                     break;
                 case 3:
-                    over = moveE(grove);
+                    moveE(grove);
                     break;
             }
-            if (over)
+        }
+
+
+        int yMin = -1, xMin = -1, yMax = 9999, xMax = 9999;
+
+        boolean found = false;
+        for (int i = 0; i < 1000; i++){
+            for (int j = 0; j < 1000; j++){
+                if (grove[i][j] == '#'){
+                    found = true;
+                    yMin = i;
+                    break;
+                }
+            }
+            if (found)
                 break;
         }
 
-        System.out.println(num+1);
+        found = false;
+        for (int i = 1000-1; i >= 0; i--){
+            for (int j = 0; j < 1000; j++){
+                if (grove[i][j] == '#'){
+                    found = true;
+                    yMax = i;
+                    break;
+                }
+            }
+            if (found)
+                break;
+        }
+
+        found = false;
+        for (int i = 1000-1; i >= 0; i--){
+            for (int j = 0; j < 1000; j++){
+                if (grove[j][i] == '#'){
+                    found = true;
+                    xMax = i;
+                    break;
+                }
+            }
+            if (found)
+                break;
+        }
+
+        found = false;
+        for (int i = 0; i < 1000; i++){
+            for (int j = 0; j < 1000; j++){
+                if (grove[j][i] == '#'){
+                    found = true;
+                    xMin = i;
+                    break;
+                }
+            }
+            if (found)
+                break;
+        }
+
+        int num = 0;
+        for (int i = yMin; i <= yMax; i++){
+            for (int j = xMin; j <= xMax; j++){
+                if (grove[i][j] == '.')
+                    num++;
+                System.out.print(grove[i][j]);
+            }
+            System.out.println();
+        }
+        System.out.println(num);
     }
 
-    public static boolean moveN(char[][] grove){
-        boolean over = true;
+    public static void moveN(char[][] grove){
         //go through once and place a number down if it is going to move there. Ex: the first would plalce a 1, the second a 2 and eventually random ascii.
         //do a second pass through and if the target spot is a 1, move, else dont move.
         //at the end get rid of all of the left over numbers.
@@ -96,28 +154,24 @@ public class day23b {
                     || grove[i+1][j] == 'o' || grove[i+1][j+1] == 'o' || grove[i+1][j-1] == 'o' || grove[i-1][j] == 'o' || grove[i-1][j+1] == 'o' || grove[i-1][j-1] == 'o' || grove[i][j-1] == 'o' || grove[i][j+1] == 'o'){
                         if (grove[i-1][j-1] != '#' && grove[i-1][j] != '#' && grove[i-1][j+1] != '#' && grove[i-1][j-1] != 'o' && grove[i-1][j] != 'o' && grove[i-1][j+1] != 'o'){
                             if (grove[i-1][j] == '.'+1){
-                                over = false;
                                 grove[i][j] = 'o';
                                 grove[i-1][j] = 'q';
                             }
                         }
                         else if (grove[i+1][j-1] != '#' && grove[i+1][j] != '#' && grove[i+1][j+1] != '#' && grove[i+1][j] != 'o' && grove[i+1][j-1] != 'o' && grove[i+1][j+1] != 'o'){
                             if (grove[i+1][j] == '.'+1){
-                                over = false;
                                 grove[i][j] = 'o';
                                 grove[i+1][j] = 'q';
                             }
                         }
                         else if (grove[i-1][j-1] != '#' && grove[i][j-1] != '#' && grove[i+1][j-1] != '#'  && grove[i-1][j-1] != 'o' && grove[i][j-1] != 'o' && grove[i+1][j-1] != 'o'){
                             if (grove[i][j-1] == '.'+1){
-                                over = false;
                                 grove[i][j] = 'o';
                                 grove[i][j-1] = 'q';
                             }
                         }
                         else if (grove[i-1][j+1] != '#' && grove[i][j+1] != '#' && grove[i+1][j+1] != '#'  && grove[i-1][j+1] != 'o' && grove[i][j+1] != 'o' && grove[i+1][j+1] != 'o'){
                             if (grove[i][j+1] == '.'+1){
-                                over = false;
                                 grove[i][j] = 'o';
                                 grove[i][j+1] = 'q';
                             }
@@ -138,11 +192,9 @@ public class day23b {
                 
             }
         }
-        return over;
     }
 
-    public static boolean moveS(char[][] grove){
-        boolean over = true;
+    public static void moveS(char[][] grove){
         //go through once and place a number down if it is going to move there. Ex: the first would plalce a 1, the second a 2 and eventually random ascii.
         //do a second pass through and if the target spot is a 1, move, else dont move.
         //at the end get rid of all of the left over numbers.
@@ -173,28 +225,24 @@ public class day23b {
                     || grove[i+1][j] == 'o' || grove[i+1][j+1] == 'o' || grove[i+1][j-1] == 'o' || grove[i-1][j] == 'o' || grove[i-1][j+1] == 'o' || grove[i-1][j-1] == 'o' || grove[i][j-1] == 'o' || grove[i][j+1] == 'o'){
                         if (grove[i+1][j-1] != '#' && grove[i+1][j] != '#' && grove[i+1][j+1] != '#' && grove[i+1][j] != 'o' && grove[i+1][j-1] != 'o' && grove[i+1][j+1] != 'o'){
                             if (grove[i+1][j] == '.'+1){
-                                over = false;
                                 grove[i][j] = 'o';
                                 grove[i+1][j] = 'q';
                             }
                         }
                         else if (grove[i-1][j-1] != '#' && grove[i][j-1] != '#' && grove[i+1][j-1] != '#' && grove[i-1][j-1] != 'o' && grove[i][j-1] != 'o' && grove[i+1][j-1] != 'o'){
                             if (grove[i][j-1] == '.'+1){
-                                over = false;
                                 grove[i][j] = 'o';
                                 grove[i][j-1] = 'q';
                             }
                         }
                         else if (grove[i-1][j+1] != '#' && grove[i][j+1] != '#' && grove[i+1][j+1] != '#' && grove[i-1][j+1] != 'o' && grove[i][j+1] != 'o' && grove[i+1][j+1] != 'o'){
                             if (grove[i][j+1] == '.'+1){
-                                over = false;
                                 grove[i][j] = 'o';
                                 grove[i][j+1] = 'q';
                             }
                         } 
                         else if (grove[i-1][j-1] != '#' && grove[i-1][j] != '#' && grove[i-1][j+1] != '#' && grove[i-1][j-1] != 'o' && grove[i-1][j] != 'o' && grove[i-1][j+1] != 'o'){
                             if (grove[i-1][j] == '.'+1){
-                                over = false;
                                 grove[i][j] = 'o';
                                 grove[i-1][j] = 'q';
                             }
@@ -215,11 +263,9 @@ public class day23b {
                 
             }
         }
-        return over;
     }
 
-    public static boolean moveW(char[][] grove){
-        boolean over = true;
+    public static void moveW(char[][] grove){
         //go through once and place a number down if it is going to move there. Ex: the first would plalce a 1, the second a 2 and eventually random ascii.
         //do a second pass through and if the target spot is a 1, move, else dont move.
         //at the end get rid of all of the left over numbers.
@@ -251,28 +297,24 @@ public class day23b {
                     || grove[i+1][j] == 'o' || grove[i+1][j+1] == 'o' || grove[i+1][j-1] == 'o' || grove[i-1][j] == 'o' || grove[i-1][j+1] == 'o' || grove[i-1][j-1] == 'o' || grove[i][j-1] == 'o' || grove[i][j+1] == 'o'){
                         if (grove[i-1][j-1] != '#' && grove[i][j-1] != '#' && grove[i+1][j-1] != '#' && grove[i-1][j-1] != 'o' && grove[i][j-1] != 'o' && grove[i+1][j-1] != 'o'){
                             if (grove[i][j-1] == '.'+1){
-                                over = false;
                                 grove[i][j] = 'o';
                                 grove[i][j-1] = 'q';
                             }
                         }
                         else if (grove[i-1][j+1] != '#' && grove[i][j+1] != '#' && grove[i+1][j+1] != '#' && grove[i-1][j+1] != 'o' && grove[i][j+1] != 'o' && grove[i+1][j+1] != 'o'){
                             if (grove[i][j+1] == '.'+1){
-                                over = false;
                                 grove[i][j] = 'o';
                                 grove[i][j+1] = 'q';
                             }
                         } 
                         else if (grove[i-1][j-1] != '#' && grove[i-1][j] != '#' && grove[i-1][j+1] != '#' && grove[i-1][j-1] != 'o' && grove[i-1][j] != 'o' && grove[i-1][j+1] != 'o'){
                             if (grove[i-1][j] == '.'+1){
-                                over = false;
                                 grove[i][j] = 'o';
                                 grove[i-1][j] = 'q';
                             }
                         }
                         else if (grove[i+1][j-1] != '#' && grove[i+1][j] != '#' && grove[i+1][j+1] != '#' && grove[i+1][j-1] != 'o' && grove[i+1][j] != 'o' && grove[i+1][j+1] != 'o'){
                             if (grove[i+1][j] == '.'+1){
-                                over = false;
                                 grove[i][j] = 'o';
                                 grove[i+1][j] = 'q';
                             }
@@ -293,11 +335,9 @@ public class day23b {
                 
             }
         }
-        return over;
     }
 
-    public static boolean moveE(char[][] grove){
-        boolean over = true;
+    public static void moveE(char[][] grove){
         //go through once and place a number down if it is going to move there. Ex: the first would plalce a 1, the second a 2 and eventually random ascii.
         //do a second pass through and if the target spot is a 1, move, else dont move.
         //at the end get rid of all of the left over numbers.
@@ -329,28 +369,24 @@ public class day23b {
                     || grove[i+1][j] == 'o' || grove[i+1][j+1] == 'o' || grove[i+1][j-1] == 'o' || grove[i-1][j] == 'o' || grove[i-1][j+1] == 'o' || grove[i-1][j-1] == 'o' || grove[i][j-1] == 'o' || grove[i][j+1] == 'o'){
                         if (grove[i-1][j+1] != '#' && grove[i][j+1] != '#' && grove[i+1][j+1] != '#' && grove[i-1][j+1] != 'o' && grove[i][j+1] != 'o' && grove[i+1][j+1] != 'o'){
                             if (grove[i][j+1] == '.'+1){
-                                over = false;
                                 grove[i][j] = 'o';
                                 grove[i][j+1] = 'q';
                             }
                         } 
                         else if (grove[i-1][j-1] != '#' && grove[i-1][j] != '#' && grove[i-1][j+1] != '#' && grove[i-1][j-1] != 'o' && grove[i-1][j] != 'o' && grove[i-1][j+1] != 'o'){
                             if (grove[i-1][j] == '.'+1){
-                                over = false;
                                 grove[i][j] = 'o';
                                 grove[i-1][j] = 'q';
                             }
                         }
                         else if (grove[i+1][j-1] != '#' && grove[i+1][j] != '#' && grove[i+1][j+1] != '#' && grove[i+1][j-1] != 'o' && grove[i+1][j] != 'o' && grove[i+1][j+1] != 'o'){
                             if (grove[i+1][j] == '.'+1){
-                                over = false;
                                 grove[i][j] = 'o';
                                 grove[i+1][j] = 'q';
                             }
                         }
                         else if (grove[i-1][j-1] != '#' && grove[i][j-1] != '#' && grove[i+1][j-1] != '#' && grove[i-1][j-1] != 'o' && grove[i][j-1] != 'o' && grove[i+1][j-1] != 'o'){
                             if (grove[i][j-1] == '.'+1){
-                                over = false;
                                 grove[i][j] = 'o';
                                 grove[i][j-1] = 'q';
                             }
@@ -371,6 +407,5 @@ public class day23b {
                 
             }
         }
-        return over;
     }
 }

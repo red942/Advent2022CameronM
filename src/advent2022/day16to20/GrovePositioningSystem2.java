@@ -2,7 +2,7 @@ package advent2022.day16to20;
 import java.util.*;
 import java.io.*;
 
-public class day20b {
+public class GrovePositioningSystem2 {
     public static void main(String[] args) throws FileNotFoundException {
         Scanner input = new Scanner(new File(
             System.getProperty("user.dir") + "/lib/advent2022/day20.txt"));
