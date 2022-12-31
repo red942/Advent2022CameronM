@@ -8,7 +8,7 @@ public class day20 {
         Scanner input = new Scanner(new File(
             System.getProperty("user.dir") + "/lib/advent2022/day20.txt"));
 
-        int[] order = new int[7];
+        int[] order = new int[5000];
         for (int i = 0; i < order.length; i++)
             order[i] = input.nextInt();
          
@@ -22,8 +22,6 @@ public class day20 {
 
         int start = findNum(actual, 0);
         System.out.println( actual.get((start + 1000) % actual.size()).y + actual.get((start + 2000) % actual.size()).y + actual.get((start + 3000) % actual.size()).y);
-        // for (int i = 0; i < actual.size(); i++)
-        //     System.out.print(actual.get(i).y + " ");
     }
 
     public static void move(ArrayList<Point> nums, int n){
@@ -31,17 +29,15 @@ public class day20 {
 
         int val = nums.get(start).y;
         int end = start + val;
-        if (end < 0)
-            end--;
         while (end < 0){
-            end += nums.size();
+            end += (nums.size()-1);
             if (end < nums.size()*-1)
                 end++;
         }
 
         
         while (end >= nums.size()){
-            end -= nums.size()-1;
+            end -= (nums.size()-1);
             if (end >= nums.size())
                 end--;
         }
