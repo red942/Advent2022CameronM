@@ -25,10 +25,6 @@ public class DistressSignal2 {
             if (listies[i].equals(Listy.fromString("[[2]]")) || listies[i].equals(Listy.fromString("[[6]]")))
                 product *= (i+1);
         }
-        System.out.println(product);
-            
+        System.out.println(product);       
     }
-    
-
-
 }
