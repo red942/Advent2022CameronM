@@ -1,0 +1,16 @@
+package advent2023;
+
+import common.*;
+import java.util.*;
+import java.io.*;
+
+public class Template {
+    public static void main(String[] args) throws Exception {
+        Scanner in = new Scanner(new File(
+                System.getProperty("user.dir") + "/lib/advent2023/day.txt"));
+
+
+
+        in.close();
+    }    
+}
