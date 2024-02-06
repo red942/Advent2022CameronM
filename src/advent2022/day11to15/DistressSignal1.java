@@ -24,6 +24,7 @@ public class DistressSignal1 {
                sum += pair;
         }
         System.out.println(sum);
+        input.close();
     }
     
 

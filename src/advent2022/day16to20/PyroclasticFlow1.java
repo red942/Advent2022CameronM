@@ -30,7 +30,7 @@ public class PyroclasticFlow1 {
         }
         
         System.out.println(getHeight(cave));
-
+        input.close();
     }
 
     public static void drop(char[][] cave, int type, int height, LinkedList<Character> gas){

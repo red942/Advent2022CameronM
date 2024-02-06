@@ -134,6 +134,7 @@ public class RegolithReservoir2 {
         }
 
         System.out.println(num);
+        input.close();
     }
 
 }

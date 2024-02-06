@@ -49,7 +49,7 @@ public class BoilingBoulders2 {
             }
         }
         System.out.println(sum);
-
+        input.close();
     }
 
     public static int exposed(char[][][] grid, int x, int y, int z){

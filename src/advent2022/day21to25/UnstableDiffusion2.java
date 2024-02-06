@@ -63,6 +63,8 @@ public class UnstableDiffusion2 {
         }
 
         System.out.println(num+1);
+        input.close();
+        
     }
 
     public static boolean moveN(char[][] grove){

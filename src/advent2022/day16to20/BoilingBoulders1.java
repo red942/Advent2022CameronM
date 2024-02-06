@@ -42,6 +42,7 @@ public class BoilingBoulders1 {
             }
         }
         System.out.println(sum);
+        input.close();
     }
 
     public static int exposed(char[][][] grid, int x, int y, int z){
@@ -62,5 +63,6 @@ public class BoilingBoulders1 {
         if (grid[x-1][y][z] !=  'O')
             num++;
         return num;
+        
     }
 }

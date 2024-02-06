@@ -122,6 +122,7 @@ public class UnstableDiffusion1 {
             System.out.println();
         }
         System.out.println(num);
+        input.close();
     }
 
     public static void moveN(char[][] grove){

@@ -60,5 +60,6 @@ public class HillClimbingAlgorithm1 {
         object.algorithm(adj, s);
         
         System.out.println(object.dist[e]);
+        input.close();
     }
 }

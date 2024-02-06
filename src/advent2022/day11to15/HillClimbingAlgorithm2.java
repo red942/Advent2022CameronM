@@ -67,5 +67,6 @@ public class HillClimbingAlgorithm2 {
                 min = object.dist[e];
         }
         System.out.println(min);
+        input.close();
     }
 }

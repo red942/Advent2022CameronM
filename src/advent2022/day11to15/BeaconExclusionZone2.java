@@ -64,7 +64,7 @@ public class BeaconExclusionZone2 {
         long x = (long)beacon.getX();
         long y = (long)beacon.getY();
         System.out.println((x*4_000_000) + y);
-
+        input.close();
     }
 
     public static Point getBeacon(Point[] sensors, int[] radii){

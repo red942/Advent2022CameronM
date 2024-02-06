@@ -22,6 +22,7 @@ public class GrovePositioningSystem1 {
 
         int start = findNum(actual, 0);
         System.out.println( actual.get((start + 1000) % actual.size()).y + actual.get((start + 2000) % actual.size()).y + actual.get((start + 3000) % actual.size()).y);
+        input.close();
     }
 
     public static void move(ArrayList<Point> nums, int n){

@@ -56,5 +56,6 @@ public class CathodeRayTube1 {
             }
         }
         System.out.print(sum);
+        input.close();
     }
 }

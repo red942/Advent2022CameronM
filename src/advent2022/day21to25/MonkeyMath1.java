@@ -57,6 +57,7 @@ public class MonkeyMath1 {
         }
 
         System.out.println(monkeys[findName("root", monkeys)].getVal());
+        input.close();
     }
 
     public static int findName(String name, Monkey[] monkeys){

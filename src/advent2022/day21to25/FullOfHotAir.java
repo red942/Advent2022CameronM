@@ -30,6 +30,7 @@ public class FullOfHotAir {
             }
         }
         System.out.println(decToSnafu(sum));
+        input.close();
     }
 
     public static String decToSnafu(long num){

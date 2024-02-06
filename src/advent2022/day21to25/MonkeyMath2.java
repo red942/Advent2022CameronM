@@ -106,6 +106,7 @@ public class MonkeyMath2 {
             }
         }
         System.out.println(val);
+        input.close();
     }
 
     public static int findName(String name, Monkey[] monkeys){

@@ -41,6 +41,7 @@ public class CathodeRayTube2 {
                 cycle(x, cycle, sprite);
             }
         }
+        input.close();
     }
 
     public static void cycle(int x, int cycle, char[] sprite){
@@ -63,6 +64,8 @@ public class CathodeRayTube2 {
             System.out.println(sprite[cycle]);
         else
             System.out.print(sprite[cycle]);
+
+        
     }
 
 }

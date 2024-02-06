@@ -82,7 +82,7 @@ public class BeaconExclusionZone1 {
         }
 
         System.out.println(n);
-
+        input.close();
     }
 
 

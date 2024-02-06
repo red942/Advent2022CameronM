@@ -1,6 +1,5 @@
 package advent2023.day6;
 
-import common.*;
 import java.util.*;
 import java.io.*;
 

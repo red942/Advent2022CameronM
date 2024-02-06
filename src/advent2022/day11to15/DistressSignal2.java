@@ -26,5 +26,6 @@ public class DistressSignal2 {
                 product *= (i+1);
         }
         System.out.println(product);       
+        input.close();
     }
 }
